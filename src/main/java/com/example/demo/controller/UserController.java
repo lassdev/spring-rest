@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by lsalvatierra on 4/12/2018.
@@ -21,15 +22,28 @@ public class UserController {
     @RequestMapping(
             method = RequestMethod.GET
     )
-    public Iterable<User> findAllUsers() {
-        return userRepository.findAll();
+    public Iterable<User> findAllUsers(@RequestParam(value = "email", required = false) String email){
+        //if(null == email){
+            return userRepository.findAll();
+        //}
+        
+        //return userRepository.findByEmail(email);
+        
     }
-
+    
+    @RequestMapping(method = RequestMethod.GET, value = "/{userId}")
+    public User readUserById(@PathVariable Long userId) {
+		
+        return this.userRepository.findById(userId).get();
+    }
+ 
     @RequestMapping(
             method = RequestMethod.POST
     )
     public User add(@RequestBody User user) {
         return userRepository.save(user);
     }
-
+    
+    
+    
 }

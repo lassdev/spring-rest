@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,10 +17,12 @@ public class Employee {
     private Long id;
 
     @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @JsonManagedReference
     private Set<Contract> contracts = new HashSet<>();
 
     private String firstName;
     private String lastName;
+    private String fullName;
 
     public Long getId() {
         return id;
@@ -50,5 +54,12 @@ public class Employee {
 
     public void setContracts(Set<Contract> contracts) {
         this.contracts = contracts;
+    }
+
+    /**
+     * @return the fullName
+     */
+    public String getFullName() {
+        return this.getFirstName() + " " + this.getLastName();
     }
 }

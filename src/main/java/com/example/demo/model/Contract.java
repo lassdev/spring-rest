@@ -1,5 +1,8 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.Date;
 
@@ -18,13 +21,16 @@ public class Contract {
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "idempleado", nullable = false, updatable = false)
+    @JsonBackReference
     private Employee employee;
 
 
     @Temporal(TemporalType.DATE)
+    //@JsonFormat(pattern="yyyy-MM-dd")
     private Date initDate;
 
     @Temporal(TemporalType.DATE)
+    //@JsonFormat(pattern="yyyy-MM-dd")
     private Date endDate;
 
     public Long getId() {
