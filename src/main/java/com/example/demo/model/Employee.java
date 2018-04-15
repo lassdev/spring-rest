@@ -22,7 +22,6 @@ public class Employee {
 
     private String firstName;
     private String lastName;
-    private String fullName;
 
     public Long getId() {
         return id;
@@ -56,10 +55,4 @@ public class Employee {
         this.contracts = contracts;
     }
 
-    /**
-     * @return the fullName
-     */
-    public String getFullName() {
-        return this.getFirstName() + " " + this.getLastName();
-    }
 }

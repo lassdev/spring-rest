@@ -14,6 +14,7 @@ public class EmployeeReport {
     private Long id;
     private String firsName;
     private String lastName;
+    private String fullName;
 
     /**
      * @return the id
@@ -55,6 +56,13 @@ public class EmployeeReport {
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    /**
+     * @return the fullName
+     */
+    public String getFullName() {
+        return  getFirsName() + " " + getLastName();
     }
    
     
